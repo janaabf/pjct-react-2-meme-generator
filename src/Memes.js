@@ -1,16 +1,22 @@
-import { useEffect, useState } from 'react';
+import { saveAs } from 'file-saver';
+import { useState } from 'react';
 
 export default function Memes() {
   const [meme, setMeme] = useState('doge');
-  const [top, setTop] = useState('oh');
-  const [bottom, setBottom] = useState('watch');
+  const [top, setTop] = useState('welcome');
+  const [bottom, setBottom] = useState('my frend');
 
   return (
     <>
-      <img
-        src={`https://api.memegen.link/images/${meme}/${top}/${bottom}.png`}
-        alt="meme"
-      />
+      {meme ? (
+        <img
+          src={`https://api.memegen.link/images/${meme}/${top}/${bottom}.png`}
+          alt="meme"
+          data-test-id="meme-image"
+        />
+      ) : (
+        'no image yet'
+      )}
       <br />
       <button
         onClick={() => {
@@ -43,7 +49,7 @@ export default function Memes() {
       </label>
       <br />
       <label>
-        top line:
+        Top text:
         <input
           value={bottom}
           onChange={(event) => {
@@ -51,6 +57,26 @@ export default function Memes() {
           }}
         />
       </label>
+      <br />
+      <button
+        onClick={() => {
+          setMeme('');
+          setTop('');
+          setBottom('');
+        }}
+      >
+        Reset
+      </button>
+      <button
+        onClick={() => {
+          saveAs(
+            `https://api.memegen.link/images/${meme}/${top}/${bottom}.png`,
+            'meme.png',
+          );
+        }}
+      >
+        Download
+      </button>
     </>
   );
 }

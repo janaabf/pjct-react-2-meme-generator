@@ -24,4 +24,3 @@ yarn-error.log*
 
 .eslintcache
 *.tsbuildinfo
-/src.Memes2.js
