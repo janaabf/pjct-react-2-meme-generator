@@ -45,7 +45,7 @@ export default App;
 //     if (!dataIsLoaded) {
 //       return (
 //         <div>
-//           <h1> Pleses wait some time.... </h1>{' '}
+//           <h1> Pleas wait some time.... </h1>{' '}
 //         </div>
 //       );
 //     } else {
