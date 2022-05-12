@@ -29,7 +29,7 @@ export default function Memes() {
       </button>
       <br />
       <label>
-        meme:
+        Meme template:
         <input
           value={meme}
           onChange={(event) => {
@@ -39,7 +39,7 @@ export default function Memes() {
       </label>
       <br />
       <label>
-        top line:
+        Top text:
         <input
           value={top}
           onChange={(event) => {
@@ -49,7 +49,7 @@ export default function Memes() {
       </label>
       <br />
       <label>
-        Top text:
+        Bottom text:
         <input
           value={bottom}
           onChange={(event) => {
