@@ -3,14 +3,24 @@ import { useState } from 'react';
 
 export default function Memes() {
   const [meme, setMeme] = useState('bender');
-  const [top, setTop] = useState('greetings');
-  const [bottom, setBottom] = useState('my friend');
+  const [top, setTop] = useState('');
+  const [bottom, setBottom] = useState('');
+
+  const urlSelector = (memes, tops, bottoms) => {
+    if (!tops && !bottoms) {
+      return `https://api.memegen.link/images/${memes}.png`;
+    } else if (!bottoms) {
+      return `https://api.memegen.link/images/${memes}/${tops}.png`;
+    } else {
+      return `https://api.memegen.link/images/${memes}/${tops}/${bottoms}.png`;
+    }
+  };
 
   return (
     <>
       {meme ? (
         <img
-          src={`https://api.memegen.link/images/${meme}/${top}/${bottom}.png`}
+          src={urlSelector(meme, top, bottom)}
           alt="meme"
           data-test-id="meme-image"
         />
