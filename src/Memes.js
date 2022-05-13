@@ -2,9 +2,9 @@ import { saveAs } from 'file-saver';
 import { useState } from 'react';
 
 export default function Memes() {
-  const [meme, setMeme] = useState('doge');
-  const [top, setTop] = useState('welcome');
-  const [bottom, setBottom] = useState('my frend');
+  const [meme, setMeme] = useState('bender');
+  const [top, setTop] = useState('greetings');
+  const [bottom, setBottom] = useState('my friend');
 
   return (
     <>
@@ -15,7 +15,7 @@ export default function Memes() {
           data-test-id="meme-image"
         />
       ) : (
-        'no image yet'
+        'generate meme by pressing the generate-button, or filling out the template.'
       )}
       <br />
       <button
