@@ -16,7 +16,7 @@ The project was made as part of the UpLeveled Full-Stack Web Development Bootcam
 
 To start the development server run: `yarn start`
 
-## Technologies used
+## Technologies/Dependecies
 
 - React.js
 - API: https://memegen.link/
