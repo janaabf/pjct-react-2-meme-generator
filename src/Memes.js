@@ -6,11 +6,14 @@ export default function Memes() {
   const [top, setTop] = useState('');
   const [bottom, setBottom] = useState('');
 
+  // changes url according to form below
   const urlSelector = (memes, tops, bottoms) => {
     if (!tops && !bottoms) {
       return `https://api.memegen.link/images/${memes}.png`;
     } else if (!bottoms) {
       return `https://api.memegen.link/images/${memes}/${tops}.png`;
+    } else if (!top) {
+      return `https://api.memegen.link/images/${memes}/_/${bottoms}.png`;
     } else {
       return `https://api.memegen.link/images/${memes}/${tops}/${bottoms}.png`;
     }
@@ -25,19 +28,8 @@ export default function Memes() {
           data-test-id="meme-image"
         />
       ) : (
-        'generate meme by pressing the generate-button, or filling out the template.'
+        'try to generate your own meme. Just use the template below :)'
       )}
-      <br />
-
-      <button
-        onClick={() => {
-          setMeme('both');
-          setTop('damn');
-          setBottom('be a lil creative');
-        }}
-      >
-        Generate
-      </button>
       <br />
 
       <div className="input">
@@ -80,12 +72,10 @@ export default function Memes() {
         >
           Reset
         </button>
+        {/* download function: */}
         <button
           onClick={() => {
-            saveAs(
-              `https://api.memegen.link/images/${meme}/${top}/${bottom}.png`,
-              'meme.png',
-            );
+            saveAs(urlSelector(meme, top, bottom), 'meme.png');
           }}
         >
           Download

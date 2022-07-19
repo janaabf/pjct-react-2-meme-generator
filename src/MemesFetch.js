@@ -1,30 +1,47 @@
 // should work, but doesn't
 
 import { useEffect, useState } from 'react';
+import Memes from './Memes';
 
 export default function MemesFetch() {
-  const [meme, setMeme] = useState('');
+  const [meme, setMeme] = useState();
+  const [url, setUrl] = useState();
   const [top, setTop] = useState('oh');
   const [bottom, setBottom] = useState('watch');
 
   useEffect(() => {
-    fetch(`https://api.memegen.link/templates`)
-      .then((res) => res.json())
-      .then((data) => {
-        setMeme(data);
-        console.log(data);
-      })
-      .catch(() => console.error());
+    async function getMemes() {
+      await fetch(`https://api.memegen.link/templates`)
+        .then((res) => res.json())
+        .then((data) => {
+          setUrl(data);
+          console.log(data);
+        });
+    }
+    getMemes().catch(() => console.error());
   }, []);
+
+  // const allMemes = memes.map(name, id) => ()
+
+  // console.log(allMemes);
 
   return (
     <>
-      <img src={meme[3].blank} alt="meme" />
+      <img src={url.meme} alt="meme" />
       <br />
-      <button>Generate</button>
+
+      <label>
+        Meme template:
+        <input
+          value={meme.id}
+          onChange={(event) => {
+            setMeme(event.currentTarget.value);
+          }}
+        />
+      </label>
       <br />
       <label>
-        top line:
+        Top text:
         <input
           value={top}
           onChange={(event) => {
@@ -34,7 +51,7 @@ export default function MemesFetch() {
       </label>
       <br />
       <label>
-        top line:
+        Bottom text:
         <input
           value={bottom}
           onChange={(event) => {
@@ -42,6 +59,16 @@ export default function MemesFetch() {
           }}
         />
       </label>
+      <br />
+      <button
+        onClick={() => {
+          setMeme('');
+          setTop('');
+          setBottom('');
+        }}
+      >
+        Reset
+      </button>
     </>
   );
 }
