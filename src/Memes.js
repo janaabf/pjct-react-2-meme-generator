@@ -72,7 +72,6 @@ export default function Memes() {
         >
           Reset
         </button>
-        {/* download function: */}
         <button
           onClick={() => {
             saveAs(urlSelector(meme, top, bottom), 'meme.png');
